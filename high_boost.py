@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 
-#image = imagem de entrada , alpha = grau de nitidez, tamanho_mascara = tamanho da mascara (3x3 nesse exemplo)
-def high_boost_filter(image, alpha=1.9, tamanho_mascara=3):
+#image = imagem de entrada , alpha = grau de nitidez, tamanho_mascara = tamanho da mascara
+def high_boost_filter(image, alpha = 2.8, tamanho_mascara = 3):
 
     # Converte a imagem de entrada para o tipo float
     image = image.astype(float)
@@ -23,11 +23,16 @@ def high_boost_filter(image, alpha=1.9, tamanho_mascara=3):
 
 
 # atribuindo a imagem de entrada a uma variável
-imagem_entrada = cv2.imread('imagens/lena.tif')
+imagem_entrada = cv2.imread('imagens/onda.tif')
 
 
 # Aplica o filtro high-boost com filtragem passa-baixa no domínio espacial na imagem de entrada
 imagem_nitidez = high_boost_filter(imagem_entrada)
+
+
+# salva as imagens em arquivos
+cv2.imwrite('imagem_de_entrada.png', imagem_entrada)
+cv2.imwrite('imagem_nitidez_agucada.png', imagem_nitidez)
 
 
 # mostra as duas imagens
@@ -35,6 +40,3 @@ cv2.imshow('Imagem de Entrada', imagem_entrada)
 cv2.imshow('Imagem Nitidez Agucada', imagem_nitidez)
 cv2.waitKey(0)  
 cv2.destroyAllWindows()  
-
-cv2.imwrite('imagem_de_entrada.jpg', imagem_entrada)
-cv2.imwrite('imagem_nitidez_agucada.jpg', imagem_nitidez)
